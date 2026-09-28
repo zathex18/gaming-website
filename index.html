@@ -1,1 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>ZATHEX Gaming</title>
+  <meta name="description" content="ZATHEX Gaming - Discover games, trending games and gaming content.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #08080f;
+      color: white;
+      min-height: 100vh;
+    }
+
+    /* NAVBAR */
+    nav {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7%;
+      background: #0d0d16;
+      border-bottom: 1px solid #20202e;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      color: #00f5ff;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #bbb;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #00f5ff;
+    }
+
+    .menu {
+      display: none;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      padding: 70px 7%;
+      background:
+        radial-gradient(circle at 80% 30%, #311b69 0%, transparent 35%),
+        radial-gradient(circle at 20% 70%, #003d45 0%, transparent 30%),
+        #08080f;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 7vw, 85px);
+      line-height: 0.95;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: #00f5ff;
+      text-shadow: 0 0 25px rgba(0,245,255,0.5);
+    }
+
+    .hero p {
+      color: #aaa;
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      margin-right: 10px;
+    }
+
+    .primary {
+      background: #00f5ff;
+      color: #050509;
+    }
+
+    .primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba(0,245,255,0.5);
+    }
+
+    .secondary {
+      border: 1px solid #333344;
+      color: white;
+    }
+
+    .secondary:hover {
+      border-color: #00f5ff;
+      color: #00f5ff;
+    }
+
+    /* SECTION */
+    section {
+      padding: 70px 7%;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: 30px;
+    }
+
+    .section-title span {
+      color: #00f5ff;
+    }
+
+    /* SEARCH */
+    .search-box {
+      margin-bottom: 35px;
+    }
+
+    .search-box input {
+      width: 100%;
+      max-width: 500px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid #29293a;
+      outline: none;
+      background: #11111b;
+      color: white;
+      font-size: 16px;
+    }
+
+    .search-box input:focus {
+      border-color: #00f5ff;
+    }
+
+    /* GAME GRID */
+    .games {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .game-card {
+      background: #11111b;
+      border: 1px solid #222234;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .game-card:hover {
+      transform: translateY(-7px);
+      border-color: #00f5ff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .game-image {
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 45px;
+      background:
+        linear-gradient(135deg, #15152a, #24244a);
+    }
+
+    .game-info {
+      padding: 18px;
+    }
+
+    .game-info h3 {
+      margin-bottom: 8px;
+    }
+
+    .game-info p {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .play {
+      display: inline-block;
+      padding: 9px 15px;
+      border-radius: 6px;
+      background: #00f5ff;
+      color: #050509;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* CATEGORIES */
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .category {
+      padding: 12px 20px;
+      border: 1px solid #29293a;
+      border-radius: 50px;
+      color: #aaa;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .category:hover {
+      color: #00f5ff;
+      border-color: #00f5ff;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 35px 7%;
+      text-align: center;
+      border-top: 1px solid #20202e;
+      color: #666;
+    }
+
+    footer span {
+      color: #00f5ff;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .games {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 0 5%;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .hero {
+        padding: 60px 5%;
+      }
+
+      section {
+        padding: 50px 5%;
+      }
+
+      .games {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">ZATHEX</div>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+
+    <div class="menu">☰</div>
+  </nav>
+
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+
+      <h1>
+        ENTER THE<br>
+        <span>GAME WORLD.</span>
+      </h1>
+
+      <p>
+        Discover exciting games, explore new worlds and
+        find your next gaming adventure with ZATHEX.
+      </p>
+
+      <a href="#games" class="btn primary">Explore Games</a>
+      <a href="#categories" class="btn secondary">Categories</a>
+
+    </div>
+  </header>
+
+
+  <!-- GAMES -->
+  <section id="games">
+
+    <div class="section-title">
+      <h2>🔥 Trending <span>Games</span></h2>
+    </div>
+
+    <div class="search-box">
+      <input
+        type="text"
+        id="search"
+        placeholder="🔎 Search games..."
+      >
+    </div>
+
+    <div class="games" id="gameList">
+
+      <div class="game-card">
+        <div class="game-image">🎯</div>
+
+        <div class="game-info">
+          <h3>Battle Arena</h3>
+          <p>Action • Multiplayer</p>
+          <a href="#" class="play">PLAY NOW</a>
+        </div>
+      </div>
+
+
+      <div class="game-card">
+        <div class="game-image">🚀</div>
+
+        <div class="game-info">
+          <h3>Space Wars</h3>
+          <p>Sci-Fi • Adventure</p>
+          <a href="#" class="play">PLAY NOW</a>
+        </div>
+      </div>
+
+
+      <div class="game-card">
+        <div class="game-image">🏎️</div>
+
+        <div class="game-info">
+          <h3>Speed Racer</h3>
+          <p>Racing • Sports</p>
+          <a href="#" class="play">PLAY NOW</a>
+        </div>
+      </div>
+
+
+      <div class="game-card">
+        <div class="game-image">🧟</div>
+
+        <div class="game-info">
+          <h3>Zombie Night</h3>
+          <p>Horror • Survival</p>
+          <a href="#" class="play">PLAY NOW</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- CATEGORIES -->
+  <section id="categories">
+
+    <div class="section-title">
+      <h2>🎮 Game <span>Categories</span></h2>
+    </div>
+
+    <div class="categories">
+      <div class="category">Action</div>
+      <div class="category">Adventure</div>
+      <div class="category">Racing</div>
+      <div class="category">Sports</div>
+      <div class="category">Horror</div>
+      <div class="category">Strategy</div>
+      <div class="category">Multiplayer</div>
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <div class="section-title">
+      <h2>About <span>ZATHEX</span></h2>
+    </div>
+
+    <p style="color:#999; max-width:700px; line-height:1.8;">
+      ZATHEX is a gaming platform concept where gamers can
+      discover games, explore different categories and enjoy
+      gaming content.
+    </p>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 <span>ZATHEX Gaming</span> — All Rights Reserved.
+  </footer>
+
+
+  <!-- SEARCH SCRIPT -->
+  <script>
+
+    const search = document.getElementById("search");
+    const cards = document.querySelectorAll(".game-card");
+
+    search.addEventListener("input", function () {
+
+      const value = search.value.toLowerCase();
+
+      cards.forEach(card => {
+
+        const text = card.innerText.toLowerCase();
+
+        if (text.includes(value)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
